@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Caché</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,800;1,700&family=Montserrat:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Calculadora <br>de Caché (UOC)</h1>
+    </header>
+
+    <main>
+        <section>
+            <div id="input_container">
+                <div>
+                    <label>Política de asignación</label>
+                    <select name="tipo_asignacion">
+                        <option value="ad">Asignación directa</option>
+                        <option value="ca">Completamente asociativa</option>
+                        <option value="apc">Asociativa por conjuntos</option>
+                    </select>
+                </div>
+
+                <div data-input="algor_reemplazo" data-visible="true">
+                    <label>Algoritmo de reemplazo</label>
+                    <select name="algoritmo_reemplazo">
+                        <option value="fifo">FIFO</option>
+                        <option value="lfu">LFU</option>
+                        <option value="lru">LRU</option>
+                    </select>
+                </div>
+            
+                <div class="inputs_row">
+                    <div>
+                        <label for="lineas_cache">Nº lineas de la caché</label>
+                        <input type="number" name="lineas_cache" value="4">
+                    </div>
+                    <div>
+                        <label for="palabras_por_bloque">Nº de palabras por bloque de memoria</label>
+                        <input type="number" name="palabras_por_bloque" value="8">
+                    </div>
+                </div>
+
+                <div>
+                    <label>Direcciones separadas por comas</label>
+                    <input type="text" name="direcciones" placeholder="20,43...">
+                </div>
+                
+                <div class="inputs_btns">
+                    <button id="btn_ejecutar">Ejecutar</button>
+                    <button id="btn_reset">Resetear</button>
+                </div>
+            </div>
+        </section>
+
+        <table id="tabla"></table>
+    </main>
+
+    <script type="application/javascript" src="script.js"></script>
+</body>
+</html>

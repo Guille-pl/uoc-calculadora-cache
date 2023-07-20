@@ -1,0 +1,116 @@
+:root {
+  --text-white: #e8eaed;
+  --inputs-bg: #303134;
+}
+
+*,
+:after,
+:before{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html{
+    background-color: #202124;
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    gap: 40px;
+    color: var(--text-white);
+}
+
+h1{
+    font-size: 50px;
+    color: var(--text-white);
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+#input_container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+#input_container select,
+#input_container input{
+    width: 100%;
+    margin: 0;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    background: var(--inputs-bg);
+    color: var(--text-white);
+    padding: 6px 10px;
+    height: auto;
+}
+
+.inputs_row{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    gap: 30px;
+}
+
+.inputs_row > div{
+    width: 50%;
+    display: grid;
+    align-content: space-between;
+    align-items: end;
+}
+
+.inputs_btns{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    gap: 14px;
+}
+
+.inputs_btns button{
+    padding: 5px 10px;
+    opacity: .8;
+    font-size: 15px;
+    transition: .2s;
+}
+
+.inputs_btns button:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
+div[data-input="algor_reemplazo"][data-visible="false"]{
+    display: none;
+}
+
+label{
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+table {
+    font-family: arial, sans-serif;
+    width: 100%;
+    margin-top:50px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 6px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
