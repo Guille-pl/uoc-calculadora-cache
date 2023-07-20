@@ -14,12 +14,15 @@ class cache{
         this.histLRU = [];
         this.histLFU = [];
 
-        document.getElementById('btn_ejecutar').addEventListener('click', ()=>this.run());
-        document.getElementById('btn_reset').addEventListener('click', ()=>this.reset());
+        this.tabla = document.querySelector('#contenedor_tabla table');
+
+        document.querySelector('button[data-btn="ejecutar"]').addEventListener('click', ()=>this.run());
+        document.querySelector('button[data-btn="reset"]').addEventListener('click', ()=>this.reset());
     }
 
 
     run(){
+        this.reset();
         this.readData();
         this.setupTable();
 
@@ -37,20 +40,9 @@ class cache{
     }
 
     reset(){
-        let tabla = document.getElementById('tabla');
-       
-        tabla.innerHTML =
-            '<tr id="heading">'+
-                '<th>Línea</th>'+
-                '<th>Estado Inicial</th>'+
-            '</tr>';
-
-        
-        this.readData();
-        this.cache = [];
-        this.histFIFO = [];
-        this.histLRU = [];
-        this.histLFU = [];
+        this.tabla.innerHTML = '';
+        this.cache.length = this.histFIFO.length =
+        this.histLRU.length = this.histLFU.length = 0;
     }
 
 
@@ -63,18 +55,21 @@ class cache{
     }
 
     setupTable(){
-        let tabla = document.getElementById('tabla');
+
         let dirInit = 0;
 
-        //Borrado tabla
-        this.reset();
+        this.tabla.innerHTML =
+            '<tr id="heading">'+
+                '<th>Línea</th>'+
+                '<th>Estado Inicial</th>'+
+            '</tr>';
 
         for (let i = 0; i < this.lineas_cache; i++) {
 
             //Asignación directa
             if(this.tipo_asignacion == 'ad'){
-                //Generación columna
-                tabla.insertAdjacentHTML('beforeend', 
+                
+                this.tabla.insertAdjacentHTML('beforeend', 
                     '<tr>'+
                         `<td>${i}</td>`+
                         `<td class="col1">${i}:0 (${dirInit}-${dirInit+this.palabras_por_bloque-1})</td>`+
@@ -83,8 +78,8 @@ class cache{
 
             //Asignación completamente asociativa
             }else if (this.tipo_asignacion == 'ca'){
-                //Generación columna
-                tabla.insertAdjacentHTML('beforeend', 
+                
+                this.tabla.insertAdjacentHTML('beforeend', 
                     '<tr>'+
                         `<td>${i}</td>`+
                         `<td class="col1">${i} (${dirInit}-${dirInit+this.palabras_por_bloque-1})</td>`+
@@ -141,8 +136,8 @@ class cache{
     tableAddColumn_AP(dir, bloque, etiqueta, linea){
 
         //Filas tabla
-        let filas = document.querySelectorAll('#tabla tr:not(#heading)');
-        let numColumnas = document.querySelectorAll('#tabla th').length;
+        let filas = this.tabla.querySelectorAll('tr:not(#heading)');
+        let numColumnas = this.tabla.querySelectorAll('th').length;
         let counter = 0;
 
         //Header
@@ -156,8 +151,8 @@ class cache{
             if (counter == linea){
                 
                 fila.insertAdjacentHTML('beforeend',
-                    `<td class='col${numColumnas}' style="background-color:orange;">`+
-                    `${bloque}:${etiqueta}`+
+                    `<td class='col${numColumnas} highlight'>`+
+                    `${bloque}:${etiqueta} `+
                     `(${this.cache[linea][0]}-`+
                     `${this.cache[linea].at(-1)})`+
                     `</td>`);
@@ -166,7 +161,7 @@ class cache{
             }else{
                 fila.insertAdjacentHTML('beforeend',
                     `<td class='col${numColumnas}'>`+
-                    document.querySelectorAll(`#tabla td.col${numColumnas-1}`)[counter].textContent+
+                    this.tabla.querySelectorAll(`td.col${numColumnas-1}`)[counter].textContent+
                     `</td>`);
             }
 
@@ -270,7 +265,7 @@ class cache{
             if (counter == linea){
                 
                 fila.insertAdjacentHTML('beforeend',
-                    `<td class='col${numColumnas}' style="background-color:orange;">`+
+                    `<td class='col${numColumnas} highlight'>`+
                     +bloque+
                     ` (${this.cache[linea][0]}-`+
                     `${this.cache[linea].at(-1)})`+
@@ -346,5 +341,5 @@ const select_politica = document.querySelector("select[name='tipo_asignacion']")
 const cont_input_algorit = document.querySelector("div[data-input='algor_reemplazo']")
 
 select_politica.onchange = (e) => {
-    cont_input_algorit.setAttribute('data-visible', (e.target.value == 'ad'))
+    cont_input_algorit.setAttribute('data-visible', (e.target.value != 'ad'))
 }

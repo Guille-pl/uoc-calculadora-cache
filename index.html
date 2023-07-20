@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,800;1,700&family=Montserrat:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,800;1,700&family=Montserrat:ital,wght@0,300;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
                     </select>
                 </div>
 
-                <div data-input="algor_reemplazo" data-visible="true">
+                <div data-input="algor_reemplazo" data-visible="false">
                     <label>Algoritmo de reemplazo</label>
                     <select name="algoritmo_reemplazo">
                         <option value="fifo">FIFO</option>
@@ -50,18 +50,20 @@
 
                 <div>
                     <label>Direcciones separadas por comas</label>
-                    <input type="text" name="direcciones" placeholder="20,43...">
+                    <input type="text" name="direcciones" placeholder="20,43,8,73...">
                 </div>
                 
                 <div class="inputs_btns">
-                    <button id="btn_ejecutar">Ejecutar</button>
-                    <button id="btn_reset">Resetear</button>
+                    <button data-btn="ejecutar">Ejecutar</button>
+                    <button data-btn="reset">Resetear</button>
                 </div>
             </div>
         </section>
-
-        <table id="tabla"></table>
     </main>
+
+    <section id="contenedor_tabla">
+        <table></table>
+    </section>
 
     <script type="application/javascript" src="script.js"></script>
 </body>
