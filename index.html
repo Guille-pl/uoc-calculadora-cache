@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Caché</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Calculadora Cache</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,800;1,700&family=Montserrat:ital,wght@0,300;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- MathJax v3 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Browser compatibility -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 </head>
 <body>
-
+    
     <header>
-        <h1>Calculadora <br>de Caché (UOC)</h1>
+        <h1>Calculadora <br>de Cache (UOC)</h1>
     </header>
 
     <main>
@@ -24,14 +29,14 @@
                     <select name="tipo_asignacion">
                         <option value="ad">Asignación directa</option>
                         <option value="ca">Completamente asociativa</option>
-                        <option value="apc">Asociativa por conjuntos</option>
+                        <option value="apc" selected>Asociativa por conjuntos (no testeada)</option>
                     </select>
                 </div>
 
                 <div data-input="algor_reemplazo" data-visible="false">
                     <label>Algoritmo de reemplazo</label>
                     <select name="algoritmo_reemplazo">
-                        <option value="fifo">FIFO</option>
+                        <option value="fifo" selected>FIFO</option>
                         <option value="lfu">LFU</option>
                         <option value="lru">LRU</option>
                     </select>
@@ -50,7 +55,7 @@
 
                 <div>
                     <label>Direcciones separadas por comas</label>
-                    <input type="text" name="direcciones" placeholder="20,43,8,73...">
+                    <input type="text" name="direcciones" placeholder="20,43,8,73..." value="22, 23, 24, 12, 28, 2, 9, 13, 55, 25, 12, 73, 44, 12, 26, 14, 18, 5, 23, 6">
                 </div>
                 
                 <div class="inputs_btns">
@@ -61,10 +66,41 @@
         </section>
     </main>
 
+    <p id="copiar_trabla" data-visible="false">¡ Sacar captura !</p>
     <section id="contenedor_tabla">
         <table></table>
     </section>
+    
+    <section id="formulas" data-visible="false">
+        <div>
+            <h4>Tasa de aciertos:</h4>
+            <p data-formula="tasa_aciertos"></p>
+        </div>
+        <div>
+            <h4>Tasa de fallos:</h4>
+            <p data-formula="tasa_fallos"></p>
+        </div>
+        <div>
+            <h4>Tiempo medio de acceso a memoria:</h4>
+            <div id="tiempo_medio">
+                <div>
+                    <label>Tiempo de acceso en caso de acierto \( (t_a) \)</label>
+                    <input type="text" name="t_acierto">
+                </div>
+                <div>
+                    <label>Tiempo de acceso en caso de fallo \( (t_f) \)</label>
+                    <input type="text" name="t_fallo">
+                </div>
+            </div>
+            <p data-formula="tiempo_medio"></p>
+        </div>
+    </section>
 
+    <footer>Made by <a href="https://github.com/Guille-pl" target="_blank">Guillermo Pulido</a></footer>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
     <script type="application/javascript" src="script.js"></script>
+    
 </body>
 </html>
