@@ -12,5 +12,5 @@ La asignación de memoria cache asociativa por conjuntos <u>**no está probada**
 
 ### Bibliotecas
 
-- ***MathJax***: Utilizada para la de svgs de las fórmulas matemáticas [ [Ver](https://www.mathjax.org/) ]
+- ***MathJax***: Utilizada para la impresión de las fórmulas matemáticas [ [Ver](https://www.mathjax.org/) ]
 - ***html2canvas***: Utilizada para capturar una imagen del resultado [ [Ver](https://html2canvas.hertzen.com/) ]
