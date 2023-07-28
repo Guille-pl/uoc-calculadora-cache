@@ -29,14 +29,14 @@
                     <select name="tipo_asignacion">
                         <option value="ad">Asignación directa</option>
                         <option value="ca">Completamente asociativa</option>
-                        <option value="apc" selected>Asociativa por conjuntos (no testeada)</option>
+                        <option value="apc">Asociativa por conjuntos (no testeada)</option>
                     </select>
                 </div>
 
                 <div data-input="algor_reemplazo" data-visible="false">
                     <label>Algoritmo de reemplazo</label>
                     <select name="algoritmo_reemplazo">
-                        <option value="fifo" selected>FIFO</option>
+                        <option value="fifo">FIFO</option>
                         <option value="lfu">LFU</option>
                         <option value="lru">LRU</option>
                     </select>
@@ -44,22 +44,26 @@
             
                 <div class="inputs_row">
                     <div>
-                        <label for="lineas_cache">Nº lineas de la caché</label>
+                        <label for="lineas_cache"><br>Nº lineas de la caché</label>
                         <input type="number" name="lineas_cache" value="4">
                     </div>
                     <div>
-                        <label for="palabras_por_bloque">Nº de palabras por bloque de memoria</label>
+                        <label for="palabras_por_bloque">Nº de palabras por <br> bloque de memoria</label>
                         <input type="number" name="palabras_por_bloque" value="8">
+                    </div>
+                    <div data-input="num_conjuntos" data-visible="false">
+                        <label for="num_conjuntos"><br>Nº de cojuntos</label>
+                        <input type="number" name="num_conjuntos" value="2">
                     </div>
                 </div>
 
                 <div>
                     <label>Direcciones separadas por comas</label>
-                    <input type="text" name="direcciones" placeholder="20,43,8,73..." value="22, 23, 24, 12, 28, 2, 9, 13, 55, 25, 12, 73, 44, 12, 26, 14, 18, 5, 23, 6">
+                    <input type="text" name="direcciones" placeholder="20,43,8,73...">
                 </div>
                 
                 <div class="inputs_btns">
-                    <button data-btn="ejecutar">Ejecutar</button>
+                    <button data-btn="iniciar">Iniciar</button>
                     <button data-btn="reset">Resetear</button>
                 </div>
             </div>

@@ -25,6 +25,10 @@
     box-sizing: border-box;
 }
 
+*[data-visible="false"]{
+    display: none;
+}
+
 html{
     background: var(--bg);
     overflow-x: hidden;
@@ -33,10 +37,11 @@ html{
 body{
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background: transparent;
     gap: 20px;
     color: var(--text-white);
@@ -79,7 +84,7 @@ h1{
     gap: 30px;
 }
 
-.inputs_row > div{
+.inputs_row > div:not([data-visible="false"]){
     width: 50%;
     display: grid;
     align-content: space-between;
@@ -104,10 +109,6 @@ h1{
 .inputs_btns button:hover{
     cursor: pointer;
     opacity: 1;
-}
-
-*[data-visible="false"]{
-    display: none;
 }
 
 label{
@@ -191,12 +192,84 @@ label{
     padding-bottom: 20px;
 }
 
+#contenedor_tabla[data-incomplete]{
+    max-width: 650px;
+    display: flex;
+    gap: 60px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+#contenedor_tabla .step{
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+#contenedor_tabla .step p{
+    font-style: italic;
+}
+
+#contenedor_tabla .step button{
+    padding: 5px 10px;
+    opacity: .8;
+    font-size: 15px;
+    transition: .2s;
+    font-family: var(--font);
+    position: relative;
+}
+
+#contenedor_tabla .step button:after{
+    font-size: 20px;
+    display: inline-block;
+    position: absolute;
+    right: -35px;
+    top: -5px;
+    content: "\1F448";
+    animation: 2.5s anim-left infinite;
+    opacity: 0;
+}
+
+#contenedor_tabla .step button:before{
+    font-size: 20px;
+    display: inline-block;
+    position: absolute;
+    left: -35px;
+    top: -5px;
+    content: "\1F449";
+    animation: 2.5s anim-right infinite;
+    opacity: 0;
+}
+
+#contenedor_tabla .step button:hover{
+    cursor: pointer;
+}
+
 table {
-    font-family: arial, sans-serif;
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
     font-family: var(--font);
+}
+
+table select{
+    font-size: 14px;
+    font-family: var(--font);
+    font-weight: 100;
+    background: none;
+    color: var(--text-white);
+    border: none;
+    width: 100%;
+}
+
+table select:focus{
+    font-weight: 100;
+    background: var(--bg);
+    color: var(--text-white);
+    border: none;
+    outline: none;
 }
 
 td, th {
@@ -214,15 +287,27 @@ td {
     font-weight: 300;
 }
 
+th:nth-child(1),
 td:nth-child(1){
     background: var(--light-bg);
+    text-align:center;
     font-weight: 500;
+}
+
+td i{
+    opacity: .8;
+    font-weight: 100;
+    font-size: 11px;
 }
 
 td.highlight{
     background-color: #fc8686;
     font-weight: bold;
     color: black;
+}
+
+td.highlight i{
+    font-weight: bold;
 }
 
 /* ********* Tabla para captura ********* */
